@@ -1,6 +1,6 @@
-package com.nianti.services;
+package com.niantic.services;
 
-import com.nianti.models.Quiz;
+import com.niantic.models.Quiz;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -38,6 +38,30 @@ public class QuizDao
         }
 
         return quizzes;
+    }
+
+    public Quiz getQuizById(int quizId)
+    {
+        String sql = """
+                SELECT quiz_id,
+                    quiz_title,
+                    is_live
+                FROM quiz
+                WHERE quiz_id = ?
+        """;
+
+        SqlRowSet row = jdbcTemplate.queryForRowSet(sql, quizId);
+
+        if(row.next())
+        {
+            String quizTitle = row.getString("quiz_title");
+            boolean isLive = row.getBoolean("is_live");
+
+            return new Quiz(quizId, quizTitle, isLive);
+        }
+        else {
+            return null;
+        }
     }
 
     private Quiz mapRowToQuiz(SqlRowSet row)

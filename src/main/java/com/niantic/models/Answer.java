@@ -1,4 +1,4 @@
-package com.nianti.models;
+package com.niantic.models;
 
 public class Answer
 {
