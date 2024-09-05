@@ -46,7 +46,7 @@ public class QuizController
     public Question startQuiz(@PathVariable int quizId)
     {
         //Fetch first question
-        return quizDao.getFirstQuestion(quizId);
+        return questionDao.getFirstQuestion(quizId);
     }
 
     //Fetch next question:
@@ -54,7 +54,7 @@ public class QuizController
     @ResponseBody
     public Question getNextQuestion(@PathVariable int quizId, @PathVariable int questionId)
     {
-        return quizDao.getNextQuestion(quizId, questionId);
+        return questionDao.getNextQuestion(quizId, questionId);
     }
 }
 
