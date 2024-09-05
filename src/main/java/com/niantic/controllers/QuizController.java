@@ -1,6 +1,8 @@
 package com.niantic.controllers;
 
+import com.niantic.models.Question;
 import com.niantic.models.Quiz;
+import com.niantic.services.QuestionDao;
 import com.niantic.services.QuizDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,11 +17,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class QuizController
 {
     private QuizDao quizDao;
+    private QuestionDao questionDao;
 
     @Autowired
-    public QuizController(QuizDao quizDao)
+    public QuizController(QuizDao quizDao, QuestionDao questionDao)
     {
         this.quizDao = quizDao;
+        this.questionDao = questionDao;
     }
 
     //Method to handle quiz selection and display quiz page:
