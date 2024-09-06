@@ -90,6 +90,18 @@ public class QuestionDao
         }
     }
 
+    public int getTotalQuestions(int quizId)
+    {
+        String sql = """
+        SELECT COUNT(*)
+        FROM questions
+        WHERE quiz_id = ?
+        """;
+
+        return jdbcTemplate.queryForRowSet(sql,Integer.class, quizId).getRow();
+
+    }
+
     // Maps all the variables in question table to make them easily retrievable
     private Question mapRowToQuestion(SqlRowSet rowSet) {
         int questionId = rowSet.getInt("question_id");

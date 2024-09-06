@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const quizzes = document.getElementById("quizzes");
+    const quizzes = document.getElementById("start-quiz-btn");
+    const quizId = document.getAttribute("data-quiz-id");
 
-
-    // link to the quiz page
-    quizzes.addEventListener("click", () => {
-
+    // start button redirects page to the first question in the quiz
+    startButton.addEventListener("click", () => {
+        window.location.href=`quiz/${quizId}/start`;
     })
 });

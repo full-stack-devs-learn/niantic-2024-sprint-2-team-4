@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="fragments/head :: head"></div>
+
+<body>
+
+<div th:replace="fragments/navigation :: nav"></div>
+
+<div class="container mt-4">
+    <div class="quiz-name">
+        <h1 th:text="${quiz.title}">Quiz Title</h1>
+    </div>
+    <div class="question-container">
+        <!-- -->
+        <p th:text="'Question ' + ${question.questionNumber} + ' of ' + th:text=${totalQuestions}"></p>
+        <h2 th:text="${question.questionText}">Question</h2>
+    </div>
+    <button id="next-question-btn" class="btn btn-dark" data-quiz-id="${quizId}">Next Question</button>
+</div>
+
+<script src="/js/start.js"></script>
+
+</body>
+</html>
