@@ -41,6 +41,27 @@ public class QuestionDao
         return questions;
     }
 
+    public Question getQuestionsById(int questionId) {
+        String sql = """
+            SELECT question_id,
+                quiz_id,
+                question_number,
+                question_text
+            FROM question
+            WHERE question_id = ?
+        """;
+
+        var row = jdbcTemplate.queryForRowSet(sql, questionId);
+
+        if (row.next()) {
+            return mapRowToQuestion(row);
+        }
+        else
+        {
+            return null;
+        }
+    }
+
     // Finding the first question of the quiz that was requested
     public Question getFirstQuestion(int quizId) {
         String sql = """

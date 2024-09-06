@@ -1,7 +1,9 @@
 package com.niantic.controllers;
 
+import com.niantic.models.Answer;
 import com.niantic.models.Question;
 import com.niantic.models.Quiz;
+import com.niantic.services.AnswerDao;
 import com.niantic.services.QuestionDao;
 import com.niantic.services.QuizDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -21,6 +24,7 @@ public class QuizController
 {
     private QuizDao quizDao;
     private QuestionDao questionDao;
+    private AnswerDao answerDao;
 
     @Autowired
     public QuizController(QuizDao quizDao, QuestionDao questionDao)
@@ -62,19 +66,6 @@ public class QuizController
         return "quiz/start";
     }
 
-    @GetMapping("/{quizId}/details")
-    @ResponseBody
-    public Map<String, Object> getQuizDetails(@PathVariable int quizId) {
-        Map<String, Object> details = new HashMap<>();
-        Quiz quiz = quizDao.getQuizById(quizId);
-        int totalQuestions = questionDao.getTotalQuestions(quizId);
-
-        details.put("quiz", quiz);
-        details.put("totalQuestions", totalQuestions);
-
-        return details;
-    }
-
     //Fetch next question:
     @GetMapping("/{quizId}/next/{questionId}")
     @ResponseBody
@@ -87,7 +78,7 @@ public class QuizController
                 nextQuestion.getQuestionNumber() + "\n" +
                 totalQuestions + "\n" +
                 nextQuestion.getQuestionId();
-    };
+    }
 }
 
     

@@ -16,7 +16,21 @@
         <p th:text="'Question ' + ${question.questionNumber} + ' of ' + ${totalQuestions}"></p>
         <h2 th:text="${question.questionText}">Question</h2>
     </div>
-    <button id="next-question-btn" class="btn btn-dark" data-quiz-id="${quiz.quizId}">Next Question</button>
+
+    <div class="answer-container">
+        <form id="answer-options">
+            <ul>
+                <li th:each="answer : ${answers}">
+                    <input type="radio" name="answer" th:value="${answer.answerId}" />
+                    <span th:text="${answer.answerText}"></span>
+                </li>
+            </ul>
+        </form>
+    </div>
+
+    <button id="next-question-btn" class="btn btn-dark" data-quiz-id="${quiz.quizId}">
+        Next Question
+    </button>
 
     <input type="hidden" id="current-question-id" value="${question.questionId}">
 </div>
