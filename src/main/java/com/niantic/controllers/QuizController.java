@@ -47,9 +47,15 @@ public class QuizController
     @GetMapping("/{quizId}/start")
     public String startQuiz(@PathVariable int quizId, Model model)
     {
+        //get quiz data:
+        Quiz quiz = quizDao.getQuizById(quizId);
+
         //Fetch first question
         Question firstQuestion = questionDao.getFirstQuestion(quizId);
-
+        int questionCount = questionDao.getTotalQuestions(quizId);
+        //add quiz data:
+        model.addAttribute("quiz", quiz);
+        model.addAttribute("totalQuestions", questionCount);
         model.addAttribute("quizId", quizId);
         model.addAttribute("question", firstQuestion);
 

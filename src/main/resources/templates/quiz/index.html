@@ -13,7 +13,7 @@
         <h1 th:text="${quiz.title}">Quiz Title</h1>
     </div>
     <!-- id uniquely identifies the button, while data-quiz-id makes retrieving the quiz id in js-->
-    <button id="start-quiz-btn" class="btn btn-dark" data-quiz-id="${quiz.quizId}">Start</button>
+    <button id="start-quiz-btn" class="btn btn-dark" th:value="${quiz.quizId}">Start</button>
 </div>
 
 <script src="/js/quiz.js"></script>

@@ -94,11 +94,13 @@ public class QuestionDao
     {
         String sql = """
         SELECT COUNT(*)
-        FROM questions
+        FROM question
         WHERE quiz_id = ?
         """;
 
-        return jdbcTemplate.queryForRowSet(sql,Integer.class, quizId).getRow();
+        var row = jdbcTemplate.queryForRowSet(sql, quizId);
+        row.next();
+        return row.getInt(1);
 
     }
 
@@ -111,4 +113,5 @@ public class QuestionDao
 
         return new Question(questionId, quizId, questionNumber, questionText);
     }
+
 }
