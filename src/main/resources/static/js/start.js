@@ -30,5 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(error => {
                         console.error('Error fetching next question:', error);
                         alert('An error occurred while fetching the next question. Please try again later.');
+            });
     });
 });

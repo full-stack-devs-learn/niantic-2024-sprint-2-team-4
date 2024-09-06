@@ -76,15 +76,12 @@ public class QuizController
         Question nextQuestion = questionDao.getNextQuestion(quizId, questionId);
         int totalQuestions = questionDao.getTotalQuestions(quizId);
 
-        // Construct a plain text response or HTML if needed
-        StringBuilder response = new StringBuilder();
-        response.append(nextQuestion.getQuestionText()).append("\n");
-        response.append(nextQuestion.getQuestionNumber()).append("\n");
-        response.append(totalQuestions).append("\n");
-        response.append(nextQuestion.getQuestionId()); // Include next question ID
-
-        return response.toString();
-    }
+        // format response as a string
+        return  nextQuestion.getQuestionText() + "\n" +
+                nextQuestion.getQuestionNumber() + "\n" +
+                totalQuestions + "\n" +
+                nextQuestion.getQuestionId();
+    };
 }
 
     
