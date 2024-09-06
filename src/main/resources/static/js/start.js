@@ -27,6 +27,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     alert('No more questions available.');
                 }
             })
-            .catch(error => console.error('Error fetching next question:', error));
+            .catch(error => {
+                        console.error('Error fetching next question:', error);
+                        alert('An error occurred while fetching the next question. Please try again later.');
     });
 });
