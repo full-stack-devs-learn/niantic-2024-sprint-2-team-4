@@ -27,10 +27,11 @@ public class QuizController
     private AnswerDao answerDao;
 
     @Autowired
-    public QuizController(QuizDao quizDao, QuestionDao questionDao)
+    public QuizController(QuizDao quizDao, QuestionDao questionDao, AnswerDao answerDao)
     {
         this.quizDao = quizDao;
         this.questionDao = questionDao;
+        this.answerDao = answerDao;
     }
 
     //Method to handle quiz selection and display quiz page:
@@ -57,11 +58,15 @@ public class QuizController
         //Fetch first question
         Question firstQuestion = questionDao.getFirstQuestion(quizId);
         int questionCount = questionDao.getTotalQuestions(quizId);
+
+        //Fetch answers:
+        List<Answer> answers = answerDao.getAnswersByQuestionId(firstQuestion.getQuestionId());
         //add quiz data:
         model.addAttribute("quiz", quiz);
         model.addAttribute("totalQuestions", questionCount);
         model.addAttribute("quizId", quizId);
         model.addAttribute("question", firstQuestion);
+        model.addAttribute("answers", answers);
 
         return "quiz/start";
     }
