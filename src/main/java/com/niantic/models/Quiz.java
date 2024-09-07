@@ -7,6 +7,7 @@ public class Quiz
     private int quizId;
     private String title;
     private boolean isLive;
+    private String description;
 
     private ArrayList<Question> questions = new ArrayList<>();
 
@@ -14,11 +15,12 @@ public class Quiz
     {
     }
 
-    public Quiz(int quizId, String title, boolean isLive)
+    public Quiz(int quizId, String title, boolean isLive, String description)
     {
         this.quizId = quizId;
         this.title = title;
         this.isLive = isLive;
+        this.description = description;
     }
 
     public int getQuizId()
@@ -50,6 +52,10 @@ public class Quiz
     {
         isLive = live;
     }
+
+    public String description() {return description;}
+
+    public void setDescription(String description) {this.description = description;}
 
     public ArrayList<Question> getQuestions()
     {

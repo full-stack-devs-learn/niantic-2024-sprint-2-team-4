@@ -11,6 +11,8 @@
     <div class="quiz-name">
          <!-- dynamically loads the name of the quiz a user chose -->
         <h1 th:text="${quiz.title}">Quiz Title</h1>
+        <p th:text="${quiz.description}">Quiz Description</p>
+        <p>When you feel ready, press "Start" to begin taking your quiz!</p>
     </div>
     <!-- id uniquely identifies the button, while data-quiz-id makes retrieving the quiz id in js-->
     <button id="start-quiz-btn" class="btn btn-dark" th:value="${quiz.quizId}">Start</button>

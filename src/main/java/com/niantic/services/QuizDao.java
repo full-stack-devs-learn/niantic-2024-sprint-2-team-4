@@ -28,6 +28,7 @@ public class QuizDao
             SELECT quiz_id
                 , quiz_title
                 , is_live
+                , description
             FROM quiz;
         """;
         var row = jdbcTemplate.queryForRowSet(sql);
@@ -45,7 +46,8 @@ public class QuizDao
         String sql = """
                 SELECT quiz_id,
                     quiz_title,
-                    is_live
+                    is_live,
+                    description
                 FROM quiz
                 WHERE quiz_id = ?
         """;
@@ -56,8 +58,9 @@ public class QuizDao
         {
             String quizTitle = row.getString("quiz_title");
             boolean isLive = row.getBoolean("is_live");
+            String description = row.getString("description");
 
-            return new Quiz(quizId, quizTitle, isLive);
+            return new Quiz(quizId, quizTitle, isLive, description);
         }
         else {
             return null;
@@ -69,7 +72,8 @@ public class QuizDao
         int id = row.getInt("quiz_id");
         String title = row.getString("quiz_title");
         boolean isLive = row.getBoolean("is_live");
+        String description = row.getString("description");
 
-        return new Quiz(id, title, isLive);
+        return new Quiz(id, title, isLive, description);
     }
 }
