@@ -8,7 +8,8 @@ CREATE TABLE quiz
 (
     quiz_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
     quiz_title VARCHAR(255),
-    is_live BOOLEAN DEFAULT 0
+    is_live BOOLEAN DEFAULT 0,
+    description TEXT(500)
 );
 
 CREATE TABLE question
@@ -28,9 +29,9 @@ CREATE TABLE answer
 );
 
 -- add quiz
-INSERT INTO quiz(quiz_id, quiz_title, is_live)
-VALUES (1, 'General History', 1)
-     , (2, 'Academic Trivia', 2)
+INSERT INTO quiz(quiz_id, quiz_title, is_live, description)
+VALUES (1, 'General History', 1, 'Test your knowledge of the world''s past with this comprehensive world history quiz! From ancient civilizations to modern times, this quiz covers pivotal events, influential figures, and major milestones that have shaped our global history. Whether you''re a history buff or just looking to brush up on your historical knowledge, this quiz offers a challenging and educational experience. Perfect for history enthusiasts and learners alike!')
+     , (2, 'Academic Trivia', 2, 'Challenge yourself with this engaging academic trivia quiz! Designed for those who love to test their knowledge across various subjects, this quiz covers a wide range of academic topics, including science, literature, mathematics, and more. Whether you''re a student, a teacher, or just a trivia aficionado, this quiz offers a fun and stimulating way to test your intellect and learn new facts. Ideal for quiz enthusiasts and trivia lovers of all ages!')
 ;
 
 INSERT INTO question(question_id, quiz_id, question_number, question_text)

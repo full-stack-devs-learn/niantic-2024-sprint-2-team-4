@@ -8,6 +8,7 @@ public class Question
     private int quizId;
     private int questionNumber;
     private String questionText;
+    private int selectedAnswerId;
 
     private ArrayList<Answer> answers = new ArrayList<>();
 
@@ -21,6 +22,7 @@ public class Question
         this.quizId = quizId;
         this.questionNumber = questionNumber;
         this.questionText = questionText;
+        this.selectedAnswerId = -1;
     }
 
     public int getQuestionId()
@@ -71,5 +73,13 @@ public class Question
     public void setAnswers(ArrayList<Answer> answers)
     {
         this.answers = answers;
+    }
+
+    public int getSelectedAnswerId() {
+        return selectedAnswerId;
+    }
+
+    public void setSelectedAnswerId(int selectedAnswerId) {
+        this.selectedAnswerId = selectedAnswerId;
     }
 }

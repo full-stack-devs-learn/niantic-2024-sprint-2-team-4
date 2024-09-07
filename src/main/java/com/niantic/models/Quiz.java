@@ -66,4 +66,20 @@ public class Quiz
     {
         this.questions = questions;
     }
+
+    public int calculateScore() {
+        int score = 0;
+
+        for (Question question : questions) {
+            int selectedAnswerId = question.getSelectedAnswerId();
+
+            for (Answer answer : question.getAnswers()) {
+                if (answer.getAnswerId() == selectedAnswerId && answer.isCorrect()) {
+                    score++;
+                    break;
+                }
+            }
+        }
+        return score;
+    }
 }

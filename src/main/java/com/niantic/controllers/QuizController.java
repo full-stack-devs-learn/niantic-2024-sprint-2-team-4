@@ -84,6 +84,18 @@ public class QuizController
                 totalQuestions + "\n" +
                 nextQuestion.getQuestionId();
     }
+
+    //Method to display the final score:
+    @GetMapping("/{quizId}/result")
+    public String showResult(@PathVariable int quizId, Model model) {
+        Quiz quiz = quizDao.getQuizById(quizId);
+
+        int score = quiz.calculateScore();
+
+        model.addAttribute("score", score);
+
+        return "result";
+    }
 }
 
     
