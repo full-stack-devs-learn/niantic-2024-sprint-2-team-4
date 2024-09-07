@@ -9,10 +9,7 @@ import com.niantic.services.QuizDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -73,16 +70,26 @@ public class QuizController
 
     //Fetch next question:
     @GetMapping("/{quizId}/next/{questionId}")
-    @ResponseBody
-    public String getNextQuestion(@PathVariable int quizId, @PathVariable int questionId) {
+    //@ResponseBody
+    public String getNextQuestion(@PathVariable int quizId, @PathVariable int questionId, Model model) {
+
+        // finds and displays the next question
         Question nextQuestion = questionDao.getNextQuestion(quizId, questionId);
+
+        // counts the total number of questions in the quiz the user is taking
         int totalQuestions = questionDao.getTotalQuestions(quizId);
 
-        // format response as a string
-        return  nextQuestion.getQuestionText() + "\n" +
-                nextQuestion.getQuestionNumber() + "\n" +
-                totalQuestions + "\n" +
-                nextQuestion.getQuestionId();
+        // finds all the possible answers to a question
+        List<Answer> answers = answerDao.getAnswersByQuestionId(nextQuestion.getQuestionId());
+
+        // holds the next question's information
+        model.addAttribute("quizId", quizId);
+        model.addAttribute("question", nextQuestion);
+        model.addAttribute("answers", answers);
+        model.addAttribute("totalQuestions", totalQuestions);
+
+        // loads the question on the question page in the "start.html" file, where all the questions and answers are loaded into
+        return "quiz/start";
     }
 
     //Method to display the final score:
