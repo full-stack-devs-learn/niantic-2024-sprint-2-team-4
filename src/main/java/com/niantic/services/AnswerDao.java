@@ -45,6 +45,27 @@ public class AnswerDao
         return answers;
     }
 
+    public List<Answer> getCorrectAnswersByQuestionId(int questionId) {
+        String sql = """
+                SELECT answer_id,
+                    question_id,
+                    answer_text,
+                    is_correct
+                FROM answer
+                WHERE question_id = ? AND is_correct = 1
+                """;
+
+        List<Answer> correctAnswers = new ArrayList<>();
+        var row = jdbcTemplate.queryForRowSet(sql, questionId);
+
+        while(row.next())
+        {
+            Answer answer = mapRowToAnswer(row);
+            correctAnswers.add(answer);
+        }
+        return correctAnswers;
+    }
+
 
     private Answer mapRowToAnswer(SqlRowSet rowSet) {
         int answerId = rowSet.getInt("answer_id");
