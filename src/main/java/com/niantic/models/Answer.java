@@ -51,11 +51,11 @@ public class Answer
 
     public boolean isCorrect()
     {
-        return isCorrect;
+        return this.isCorrect;
     }
 
-    public void setCorrect(boolean correct)
+    public void setCorrect(boolean isCorrect)
     {
-        isCorrect = correct;
+        this.isCorrect = isCorrect;
     }
 }
