@@ -22,6 +22,7 @@ public class AnswerDao
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    // displays all possible multiple choice options in a question
     public List<Answer> getAnswersByQuestionId(int questionId)
     {
         List<Answer> answers = new ArrayList<>();
@@ -45,6 +46,7 @@ public class AnswerDao
         return answers;
     }
 
+    // identifies the correct answer out of all the options (is_correct = 1 represents "correct")
     public List<Answer> getCorrectAnswersByQuestionId(int questionId) {
         String sql = """
                 SELECT answer_id,
