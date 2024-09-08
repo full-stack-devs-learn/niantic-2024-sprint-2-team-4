@@ -12,7 +12,6 @@
         <h1 th:text="${quiz.title}">Quiz Title</h1>
     </div>
     <div class="question-container">
-        <!-- -->
         <p th:text="'Question ' + ${question.questionNumber} + ' of ' + ${totalQuestions}"></p>
         <h2 th:text="${question.questionText}">Question</h2>
     </div>
@@ -28,11 +27,11 @@
         </form>
     </div>
 
-    <button id="next-question-btn" class="btn btn-dark" data-quiz-id="${quiz.quizId}">
+    <button id="next-question-btn" class="btn btn-dark" th:data-quiz-id="${quiz.quizId}">
         Next Question
     </button>
 
-    <input type="hidden" id="current-question-id" value="${question.questionId}">
+    <input type="hidden" id="current-question-id" th:value="${question.questionNumber}">
 </div>
 
 <script src="/js/start.js"></script>

@@ -87,28 +87,38 @@ public class QuestionDao
     // Get the next question based on currentQuestionId
     public Question getNextQuestion(int quizId, int currentQuestionId) {
         String sql = """
+            SELECT question_number
+            FROM question
+            WHERE question_id = ?
+        """;
+
+        Integer currentQuestionNumber = jdbcTemplate.queryForObject(sql, Integer.class, currentQuestionId);
+
+        if (currentQuestionNumber == null) {
+            return null;
+        }
+
+        // displays the next question information (ie. what number the user is on, and displays the question itself)
+        String nextQuestionQuery = """
             SELECT question_id,
-                quiz_id,
                 question_number,
                 question_text
             FROM question
-            WHERE quiz_id = ? 
-              AND question_number > (
-                SELECT question_number
-                FROM question
-                WHERE question_id = ?
-            )
+            WHERE quiz_id = ?
+                AND question_number > ?
             ORDER BY question_number
             LIMIT 1
         """;
 
-        var row = jdbcTemplate.queryForRowSet(sql, quizId, currentQuestionId);
+        // rowNum not used, but represents row indexes
+        Question nextQuestion = jdbcTemplate.queryForObject(nextQuestionQuery, (rs, rowNum) -> new Question(
+                rs.getInt("question_id"),       // extracts value of question_id
+                quizId,
+                rs.getInt("question_number"),
+                rs.getString("question_text")
+        ), quizId, currentQuestionNumber);
 
-        if (row.next()) {
-            return mapRowToQuestion(row);
-        } else {
-            return null;
-        }
+        return nextQuestion;
     }
 
     public int getTotalQuestions(int quizId)

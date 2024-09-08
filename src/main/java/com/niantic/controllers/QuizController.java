@@ -69,12 +69,15 @@ public class QuizController
     }
 
     //Fetch next question:
-    @GetMapping("/{quizId}/next/{questionId}")
+    @GetMapping("/{quizId}/{questionId}")
     //@ResponseBody
     public String getNextQuestion(@PathVariable int quizId, @PathVariable int questionId, Model model) {
+        Quiz quiz = quizDao.getQuizById(quizId);
 
         // finds and displays the next question
         Question nextQuestion = questionDao.getNextQuestion(quizId, questionId);
+
+        System.out.println(nextQuestion);
 
         // counts the total number of questions in the quiz the user is taking
         int totalQuestions = questionDao.getTotalQuestions(quizId);
@@ -83,6 +86,7 @@ public class QuizController
         List<Answer> answers = answerDao.getAnswersByQuestionId(nextQuestion.getQuestionId());
 
         // holds the next question's information
+        model.addAttribute("quiz", quiz);
         model.addAttribute("quizId", quizId);
         model.addAttribute("question", nextQuestion);
         model.addAttribute("answers", answers);
