@@ -8,9 +8,11 @@
 <div th:replace="fragments/navigation :: nav"></div>
 
 <div class="container mt-4">
+    <div class="card mb-2 quiz-card">
     <h1>Quiz Results</h1>
-    <p>Your Score: <span th:text="${score}">0</span></p>
-    <a href="/" class="btn btn-dark">Return to Home</a>
+    <h3>Your Score: <span th:text="${score}">0</span></h3>
+    <a href="/" class="btn btn-dark btn-primary custom-btn custom-hover-btn">Return to Home</a>
+    </div>
 </div>
 
 </body>
