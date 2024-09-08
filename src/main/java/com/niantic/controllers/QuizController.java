@@ -69,7 +69,7 @@ public class QuizController
     }
 
     //Fetch next question:
-    @GetMapping("/{quizId}/{questionId}")
+    @GetMapping("/{quizId}/next/{questionId}")
     //@ResponseBody
     public String getNextQuestion(@PathVariable int quizId, @PathVariable int questionId, Model model) {
         Quiz quiz = quizDao.getQuizById(quizId);
@@ -83,7 +83,10 @@ public class QuizController
         int totalQuestions = questionDao.getTotalQuestions(quizId);
 
         // finds all the possible answers to a question
-        List<Answer> answers = answerDao.getAnswersByQuestionId(nextQuestion.getQuestionId());
+        List<Answer> answers = answerDao.getAnswersByQuestionId(nextQuestion.getQuestionNumber());
+
+        //Checks if it's the last question:
+        boolean isLastQuestion = nextQuestion.getQuestionNumber() == totalQuestions;
 
         // holds the next question's information
         model.addAttribute("quiz", quiz);
@@ -91,6 +94,7 @@ public class QuizController
         model.addAttribute("question", nextQuestion);
         model.addAttribute("answers", answers);
         model.addAttribute("totalQuestions", totalQuestions);
+        model.addAttribute("isLastQuestion", isLastQuestion);
 
         // loads the question on the question page in the "start.html" file, where all the questions and answers are loaded into
         return "quiz/start";
@@ -105,7 +109,7 @@ public class QuizController
 
         model.addAttribute("score", score);
 
-        return "result";
+        return "quiz/result";
     }
 }
 

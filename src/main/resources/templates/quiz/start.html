@@ -27,11 +27,12 @@
         </form>
     </div>
 
-    <button id="next-question-btn" class="btn btn-dark" th:data-quiz-id="${quiz.quizId}">
+    <button id="next-question-btn" class="btn btn-dark" th:text="${isLastQuestion} ? 'See Results' : 'Next Question'" th:data-quiz-id="${quiz.quizId}">
         Next Question
     </button>
 
-    <input type="hidden" id="current-question-id" th:value="${question.questionNumber}">
+    <input type="hidden" id="current-question-id" th:value="${question.questionId}">
+    <input type="hidden" id="is-last-question" th:value="${isLastQuestion}">
 </div>
 
 <script src="/js/start.js"></script>

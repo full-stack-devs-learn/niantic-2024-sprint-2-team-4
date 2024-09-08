@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const nextButton = document.getElementById("next-question-btn");
 
     if (nextButton) {
-        nextButton.classList.add('hide'); // Hide button initially
+        nextButton.classList.add('hide'); //Hide button initially
 
         const quizId = nextButton.getAttribute("data-quiz-id");
 
@@ -14,14 +14,26 @@ document.addEventListener("DOMContentLoaded", () => {
         const currentQuestionIdElement = document.getElementById("current-question-id");
         const currentQuestionId = parseInt(currentQuestionIdElement.value, 10);
 
+        const isLastQuestionElement = document.getElementById("is-last-question");
+        const isLastQuestion = isLastQuestionElement && isLastQuestionElement.value === 'true'; //Checks if it's the last question
+
         if (isNaN(currentQuestionId)) {
             console.error("Invalid currentQuestionId:", currentQuestionIdElement.value);
             return;
         }
 
+        //Show button:
+        nextButton.classList.remove('hide');
+
         nextButton.addEventListener("click", () => {
             console.log(quizId);
-            location.href = `/quiz/${quizId}/${currentQuestionId}`;
+
+            if(isLastQuestion) {
+                location.href = `/quiz/${quizId}/result`;
+            }
+            else {
+                location.href = `/quiz/${quizId}/next/${currentQuestionId}`;
+            }
 
     /*
             fetch(`/quiz/${quizId}/next/${currentQuestionId}`)
@@ -48,7 +60,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
                 */
         });
-    } else {
+    }
+
+    else {
         console.error("Next button not found");
     }
 });
