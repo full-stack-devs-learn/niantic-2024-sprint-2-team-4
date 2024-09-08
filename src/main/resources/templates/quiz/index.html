@@ -8,6 +8,7 @@
 <div th:replace="fragments/navigation :: nav"></div>
 
 <div class="container mt-4">
+    <div class="card mb-2 quiz-card">
     <div class="quiz-name">
          <!-- dynamically loads the name of the quiz a user chose -->
         <h1 th:text="${quiz.title}">Quiz Title</h1>
@@ -17,6 +18,7 @@
     <br>
     <!-- id uniquely identifies the button, while data-quiz-id makes retrieving the quiz id in js-->
     <button id="start-quiz-btn" class="btn btn-dark btn-lg custom-btn custom-hover-btn" th:value="${quiz.quizId}">Start</button>
+</div>
 </div>
 
 <script src="/js/quiz.js"></script>

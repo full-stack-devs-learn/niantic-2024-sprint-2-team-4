@@ -8,6 +8,7 @@
 <div th:replace="fragments/navigation :: nav"></div>
 
 <div class="container mt-4">
+    <div class="card mb-2 quiz-card">
     <div class="quiz-name">
         <h1 th:text="${quiz.title}">Quiz Title</h1>
     </div>
@@ -25,7 +26,6 @@
         <br>
    <h1 th:text="${question.questionText}">Question</h1>
 </div>
-
 <div class="answer-container">
    <form id="answer-options">
        <ul>
@@ -44,6 +44,7 @@
 
 <input type="hidden" id="current-question-id" th:value="${question.questionId}">
 <input type="hidden" id="is-last-question" th:value="${isLastQuestion}">
+</div>
 </div>
 
 <script src="/js/start.js"></script>

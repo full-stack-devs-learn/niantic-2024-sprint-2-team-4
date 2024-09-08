@@ -1,5 +1,6 @@
 body {
  font-family: "Cabin Sketch";
+ background-color: #e99ec0;
 }
 
 .answer-container {
@@ -28,7 +29,6 @@ body {
 .answer-container label {
     display: flex;
     align-items: center;
-    cursor: pointer;
 }
 
 .answer-container span {
@@ -46,35 +46,37 @@ body {
 }
 
 .quiz-link img {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    margin-top: 5px;
     vertical-align: middle;
 }
 
 .custom-navbar {
-    background-color: #4bb9d4;
-}
-
-.custom-label:hover {
-    color: #4bb9d4;
-    cursor: pointer;
+    background-color: #43b0c2;
 }
 
 .custom-hover-btn:hover {
     font-family: "Cabin Sketch";
-    background-color: #4bb9d4;
+    background-color: #43b0c2;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
-.quiz-card {
+.quiz-card-1 {
     font-family: "Cabin Sketch";
     transition: background-color 0.3s ease, color 0.3s ease;
     cursor: pointer;
+    background-color: #fff8b8;
 }
 
-.quiz-card:hover {
-    background-color: #4bb9d4;
+.quiz-card-1:hover {
+    background-color: #43b0c2;
     color: #ffffff;
+}
+
+.quiz-card {
+    font-family: "Cabin Sketch";
+    background-color: #fff8b8;
 }
 
 .quiz-name {
@@ -83,4 +85,5 @@ body {
 
 .custom-btn {
     font-family: "Cabin Sketch";
+    background-color: #876bd1;
 }
