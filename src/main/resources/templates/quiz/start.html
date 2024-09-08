@@ -12,27 +12,38 @@
         <h1 th:text="${quiz.title}">Quiz Title</h1>
     </div>
     <div class="question-container">
-        <p th:text="'Question ' + ${question.questionNumber} + ' of ' + ${totalQuestions}"></p>
-        <h2 th:text="${question.questionText}">Question</h2>
-    </div>
+        <!--Progress Bar-->
+        <div class="progress mb-3">
+            <div class="progress-bar progress-bar-striped bg-info progress-bar-animated" role="progressbar"
+                 th:style="${'width: ' + ((question.questionNumber.doubleValue() / totalQuestions.doubleValue()) * 100) + '%'}"
+                 aria-valuenow="${question.questionNumber}" aria-valuemin="0" aria-valuemax="${totalQuestions}">
+            <!--th:text="'Question ' + ${question.questionNumber} + ' of ' + ${totalQuestions}"-->
+       </div>
+   </div>
+   <p th:text="'Question ' + ${question.questionNumber} + ' of ' + ${totalQuestions}"></p>
+        <br>
+        <br>
+   <h1 th:text="${question.questionText}">Question</h1>
+</div>
 
-    <div class="answer-container">
-        <form id="answer-options">
-            <ul>
-                <li th:each="answer : ${answers}">
-                    <input type="radio" name="answer" th:value="${answer.answerId}" />
-                    <span th:text="${answer.answerText}"></span>
-                </li>
-            </ul>
-        </form>
-    </div>
+<div class="answer-container">
+   <form id="answer-options">
+       <ul>
+           <li th:each="answer : ${answers}">
+               <input type="radio" name="answer" th:value="${answer.answerId}" class="custom-radio" id="answer-${answer.answerId}" />
+               <label for="answer-${answer.answerId}" class="custom-label">
+               <span th:text="${answer.answerText}"></span>
+           </li>
+       </ul>
+   </form>
+</div>
+<br>
+<button id="next-question-btn" class="btn btn-dark custom-btn custom-hover-btn"
+       th:text="${isLastQuestion} ? 'See Results' : 'Next Question'"
+       th:data-quiz-id="${quiz.quizId}">Next Question</button>
 
-    <button id="next-question-btn" class="btn btn-dark" th:text="${isLastQuestion} ? 'See Results' : 'Next Question'" th:data-quiz-id="${quiz.quizId}">
-        Next Question
-    </button>
-
-    <input type="hidden" id="current-question-id" th:value="${question.questionId}">
-    <input type="hidden" id="is-last-question" th:value="${isLastQuestion}">
+<input type="hidden" id="current-question-id" th:value="${question.questionId}">
+<input type="hidden" id="is-last-question" th:value="${isLastQuestion}">
 </div>
 
 <script src="/js/start.js"></script>

@@ -83,7 +83,7 @@ public class QuizController
         int totalQuestions = questionDao.getTotalQuestions(quizId);
 
         // finds all the possible answers to a question
-        List<Answer> answers = answerDao.getAnswersByQuestionId(nextQuestion.getQuestionNumber());
+        List<Answer> answers = answerDao.getAnswersByQuestionId(nextQuestion.getQuestionId());
 
         //Checks if it's the last question:
         boolean isLastQuestion = nextQuestion.getQuestionNumber() == totalQuestions;
