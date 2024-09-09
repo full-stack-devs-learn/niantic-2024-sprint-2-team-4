@@ -30,9 +30,12 @@
    <form id="answer-options">
        <ul>
            <li th:each="answer : ${answers}">
-               <input type="radio" name="answer" th:value="${answer.answerId}" class="custom-radio" id="answer-${answer.answerId}" />
-               <label for="answer-${answer.answerId}" class="custom-label">
-               <span th:text="${answer.answerText}"></span>
+               <input type="radio" name="answer" th:value="${answer.answerId}"
+                      class="custom-radio"
+                      th:id="'answer-' + ${answer.answerId}" />
+               <label th:for="'answer-' + ${answer.answerId}" class="custom-label">
+                   <span th:text="${answer.answerText}"></span>
+               </label>
            </li>
        </ul>
    </form>
