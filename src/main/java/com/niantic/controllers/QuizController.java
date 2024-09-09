@@ -104,7 +104,7 @@ public class QuizController
 
     // processes user answers and updates their score
     @PostMapping("/{quizId}/submit")
-    public String submitQuiz(@PathVariable int quizId, @RequestParam Map<String, String> userAnswers, Model model)
+    public String submitQuiz(@PathVariable int quizId, @RequestParam Map<String, String> userAnswers, Model model, HttpSession session)
     {
         // Retrieve correct answers from database
         List<Question> questions = questionDao.getQuestionsByQuizId(quizId);
@@ -122,7 +122,8 @@ public class QuizController
         // Calculate score
         int score = calculateScore(userAnswers, correctAnswers);
 
-        model.addAttribute("score", score);
+        session.setAttribute("score", score);
+
         return "redirect:/quiz/" + quizId + "/result";      // redirect to results page with score
     }
 

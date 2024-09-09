@@ -27,7 +27,7 @@
    <h1 th:text="${question.questionText}">Question</h1>
 </div>
 <div class="answer-container">
-   <form id="answer-options">
+   <form id="answer-options" action="/quiz/${quiz.quizId}/submit" method="post">
        <ul>
            <li th:each="answer : ${answers}">
                <input type="radio" name="answer" th:value="${answer.answerId}"
