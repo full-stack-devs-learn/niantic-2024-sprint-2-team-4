@@ -1,68 +1,46 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const nextButton = document.getElementById("next-question-btn");
+document.addEventListener('DOMContentLoaded', function() {
+    const answerOptionsForm = document.getElementById('answer-options');
+    const nextButton = document.getElementById('next-question-btn');
 
-    if (nextButton) {
-        nextButton.classList.add('hide'); //Hide button initially
+    if (!nextButton) {
+        console.error("Next button not found");
+        return;
+    }
 
-        const quizId = nextButton.getAttribute("data-quiz-id");
-
-        if (!quizId) {
-            console.error("Quiz ID is missing.");
-            return;
+    // Function to check if an option is selected
+    function checkAnswerSelection() {
+        const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+        if (selectedAnswer) {
+            nextButton.classList.remove('hide'); // Show the button
+        } else {
+            nextButton.classList.add('hide'); // Hide the button
         }
+    }
 
+    // Initial check to set button visibility based on pre-selected options (if any)
+    checkAnswerSelection();
+
+    // Add event listener to radio buttons
+    answerOptionsForm.addEventListener('change', checkAnswerSelection);
+
+    // Handle next button click
+    nextButton.addEventListener("click", () => {
+        const quizId = nextButton.getAttribute("data-quiz-id");
         const currentQuestionIdElement = document.getElementById("current-question-id");
         const currentQuestionId = parseInt(currentQuestionIdElement.value, 10);
-
         const isLastQuestionElement = document.getElementById("is-last-question");
-        const isLastQuestion = isLastQuestionElement && isLastQuestionElement.value === 'true'; //Checks if it's the last question
+        const isLastQuestion = isLastQuestionElement && isLastQuestionElement.value === 'true'; // Checks if it's the last question
 
         if (isNaN(currentQuestionId)) {
             console.error("Invalid currentQuestionId:", currentQuestionIdElement.value);
             return;
         }
 
-        //Show button:
-        nextButton.classList.remove('hide');
-
-        nextButton.addEventListener("click", () => {
-            console.log(quizId);
-
-            if(isLastQuestion) {
-                location.href = `/quiz/${quizId}/result`;
-            }
-            else {
-                location.href = `/quiz/${quizId}/next/${currentQuestionId}`;
-            }
-
-    /*
-            fetch(`/quiz/${quizId}/next/${currentQuestionId}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.text();
-                })
-                .then(data => {
-                    if (data) {
-                        const [questionText, questionNumber, totalQuestions, nextQuestionId] = data.split('|');
-                        document.querySelector('.question-container h2').textContent = questionText;
-                        document.querySelector('.question-container p').textContent = `Question ${questionNumber} of ${totalQuestions}`;
-                        currentQuestionIdElement.value = nextQuestionId;
-                        nextButton.classList.remove('hide');
-                    } else {
-                        alert('No more questions available.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error fetching next question:', error);
-                    alert('An error occurred while fetching the next question. Please try again later.');
-                });
-                */
-        });
-    }
-
-    else {
-        console.error("Next button not found");
-    }
+        if (isLastQuestion) {
+            location.href = `/quiz/${quizId}/result`;
+        } else {
+            location.href = `/quiz/${quizId}/next/${currentQuestionId}`;
+        }
+    });
 });
+

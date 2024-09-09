@@ -19,9 +19,9 @@
                  th:style="${'width: ' + ((question.questionNumber.doubleValue() / totalQuestions.doubleValue()) * 100) + '%'}"
                  aria-valuenow="${question.questionNumber}" aria-valuemin="0" aria-valuemax="${totalQuestions}">
             <!--th:text="'Question ' + ${question.questionNumber} + ' of ' + ${totalQuestions}"-->
+           </div>
        </div>
-   </div>
-   <p th:text="'Question ' + ${question.questionNumber} + ' of ' + ${totalQuestions}"></p>
+       <p th:text="'Question ' + ${question.questionNumber} + ' of ' + ${totalQuestions}"></p>
         <br>
         <br>
    <h1 th:text="${question.questionText}">Question</h1>
@@ -45,9 +45,9 @@
        th:text="${isLastQuestion} ? 'See Results' : 'Next Question'"
        th:data-quiz-id="${quiz.quizId}">Next Question</button>
 
-<input type="hidden" id="current-question-id" th:value="${question.questionId}">
-<input type="hidden" id="is-last-question" th:value="${isLastQuestion}">
-</div>
+    <input type="hidden" id="current-question-id" th:value="${question.questionId}">
+    <input type="hidden" id="is-last-question" th:value="${isLastQuestion}">
+    </div>
 </div>
 
 <script src="/js/start.js"></script>

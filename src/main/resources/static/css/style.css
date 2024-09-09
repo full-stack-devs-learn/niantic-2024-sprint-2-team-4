@@ -41,6 +41,10 @@ label {
     font-size: 17px;
 }
 
+.hide{
+    display: none;
+}
+
 .navbar-brand {
     font-size: 1.8rem;
 }

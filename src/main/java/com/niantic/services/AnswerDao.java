@@ -46,7 +46,7 @@ public class AnswerDao
         return answers;
     }
 
-    // identifies the correct answer out of all the options (is_correct = 1 represents "correct")
+    // identifies the correct answer out of all the options in a question (is_correct = 1 represents "correct")
     public List<Answer> getCorrectAnswersByQuestionId(int questionId) {
         String sql = """
                 SELECT answer_id,

@@ -6,6 +6,7 @@ import com.niantic.models.Quiz;
 import com.niantic.services.AnswerDao;
 import com.niantic.services.QuestionDao;
 import com.niantic.services.QuizDao;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,6 +55,7 @@ public class QuizController
 
         //Fetch first question
         Question firstQuestion = questionDao.getFirstQuestion(quizId);
+
         int questionCount = questionDao.getTotalQuestions(quizId);
 
         //Fetch answers:
@@ -100,16 +102,62 @@ public class QuizController
         return "quiz/start";
     }
 
-    //Method to display the final score:
-    @GetMapping("/{quizId}/result")
-    public String showResult(@PathVariable int quizId, Model model) {
-        Quiz quiz = quizDao.getQuizById(quizId);
+    // processes user answers and updates their score
+    @PostMapping("/{quizId}/submit")
+    public String submitQuiz(@PathVariable int quizId, @RequestParam Map<String, String> userAnswers, Model model)
+    {
+        // Retrieve correct answers from database
+        List<Question> questions = questionDao.getQuestionsByQuizId(quizId);
+        Map<Integer, Integer> correctAnswers = new HashMap<>();
 
-        int score = quiz.calculateScore();
+        for (Question question : questions)
+        {
+            List<Answer> correctAnswerList = answerDao.getCorrectAnswersByQuestionId(question.getQuestionId());
+            for (Answer answer : correctAnswerList)
+            {
+                correctAnswers.put(question.getQuestionId(), answer.getAnswerId());
+            }
+        }
+
+        // Calculate score
+        int score = calculateScore(userAnswers, correctAnswers);
+
+        model.addAttribute("score", score);
+        return "redirect:/quiz/" + quizId + "/result";      // redirect to results page with score
+    }
+
+    // displays the final score
+    @GetMapping("/{quizId}/result")
+    public String showResult(@PathVariable int quizId, Model model, HttpSession session) {
+        // Retrieve score from the session
+        Integer score = (Integer) session.getAttribute("score");
+
+        // If score is null, handle it appropriately
+        if (score == null)
+        {
+            score = 0; // Default to 0 if no score is found
+        }
 
         model.addAttribute("score", score);
 
+        // clear from session after displaying score
+        session.removeAttribute("score");
+
         return "quiz/result";
+    }
+
+    private int calculateScore(Map<String, String> userAnswers, Map<Integer, Integer> correctAnswers) {
+        int score = 0;
+        for (Map.Entry<String, String> entry : userAnswers.entrySet())
+        {
+            int questionId = Integer.parseInt(entry.getKey());
+            int selectedAnswerId = Integer.parseInt(entry.getValue());
+            if (correctAnswers.get(questionId) != null && correctAnswers.get(questionId) == selectedAnswerId)
+            {
+                score++;
+            }
+        }
+        return score;
     }
 }
 
