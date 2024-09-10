@@ -36,13 +36,8 @@ public class QuizController
     @GetMapping("/{quizId}")
     public String showQuiz(@PathVariable int quizId, Model model)
     {
-        //get quiz data:
         Quiz quiz = quizDao.getQuizById(quizId);
-
-        //add quiz data:
         model.addAttribute("quiz", quiz);
-
-        //return quiz page:
         return "quiz/index";
     }
 
@@ -50,17 +45,12 @@ public class QuizController
     @GetMapping("/{quizId}/start")
     public String startQuiz(@PathVariable int quizId, Model model)
     {
-        //get quiz data:
         Quiz quiz = quizDao.getQuizById(quizId);
-
-        //Fetch first question
         Question firstQuestion = questionDao.getFirstQuestion(quizId);
-
         int questionCount = questionDao.getTotalQuestions(quizId);
 
-        //Fetch answers:
         List<Answer> answers = answerDao.getAnswersByQuestionId(firstQuestion.getQuestionId());
-        //add quiz data:
+
         model.addAttribute("quiz", quiz);
         model.addAttribute("totalQuestions", questionCount);
         model.addAttribute("quizId", quizId);
@@ -75,22 +65,17 @@ public class QuizController
     //@ResponseBody
     public String getNextQuestion(@PathVariable int quizId, @PathVariable int questionId, Model model) {
         Quiz quiz = quizDao.getQuizById(quizId);
-
-        // finds and displays the next question
         Question nextQuestion = questionDao.getNextQuestion(quizId, questionId);
+        int totalQuestions = questionDao.getTotalQuestions(quizId);
 
         System.out.println(nextQuestion);
-
-        // counts the total number of questions in the quiz the user is taking
-        int totalQuestions = questionDao.getTotalQuestions(quizId);
 
         // finds all the possible answers to a question
         List<Answer> answers = answerDao.getAnswersByQuestionId(nextQuestion.getQuestionId());
 
-        //Checks if it's the last question:
+        // looks for last question
         boolean isLastQuestion = nextQuestion.getQuestionNumber() == totalQuestions;
 
-        // holds the next question's information
         model.addAttribute("quiz", quiz);
         model.addAttribute("quizId", quizId);
         model.addAttribute("question", nextQuestion);
@@ -98,8 +83,7 @@ public class QuizController
         model.addAttribute("totalQuestions", totalQuestions);
         model.addAttribute("isLastQuestion", isLastQuestion);
 
-        // loads the question on the question page in the "start.html" file, where all the questions and answers are loaded into
-        return "quiz/start";
+        return "quiz/question-fragment";
     }
 
     // processes user answers and updates their score
@@ -119,24 +103,21 @@ public class QuizController
             }
         }
 
-        // Calculate score
         int score = calculateScore(userAnswers, correctAnswers);
 
         session.setAttribute("score", score);
 
-        return "redirect:/quiz/" + quizId + "/result";      // redirect to results page with score
+        return "redirect:/quiz/" + quizId + "/result";
     }
 
     // displays the final score
     @GetMapping("/{quizId}/result")
     public String showResult(@PathVariable int quizId, Model model, HttpSession session) {
-        // Retrieve score from the session
         Integer score = (Integer) session.getAttribute("score");
 
-        // If score is null, handle it appropriately
         if (score == null)
         {
-            score = 0; // Default to 0 if no score is found
+            score = 0;
         }
 
         model.addAttribute("score", score);

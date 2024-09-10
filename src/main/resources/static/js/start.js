@@ -1,4 +1,10 @@
+const answers = [];
+
 document.addEventListener('DOMContentLoaded', function() {
+    initPage();
+ });
+
+function initPage(){
     const answerOptionsForm = document.getElementById('answer-options');
     const nextButton = document.getElementById('next-question-btn');
 
@@ -17,10 +23,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Initial check to set button visibility based on pre-selected options (if any)
     checkAnswerSelection();
 
-    // Add event listener to radio buttons
     answerOptionsForm.addEventListener('change', checkAnswerSelection);
 
     // Handle next button click
@@ -29,18 +33,31 @@ document.addEventListener('DOMContentLoaded', function() {
         const currentQuestionIdElement = document.getElementById("current-question-id");
         const currentQuestionId = parseInt(currentQuestionIdElement.value, 10);
         const isLastQuestionElement = document.getElementById("is-last-question");
-        const isLastQuestion = isLastQuestionElement && isLastQuestionElement.value === 'true'; // Checks if it's the last question
+        const isLastQuestion = isLastQuestionElement && isLastQuestionElement.value === 'true';
 
         if (isNaN(currentQuestionId)) {
             console.error("Invalid currentQuestionId:", currentQuestionIdElement.value);
             return;
         }
 
+
+        //get answer logic, and then plug it into the span in result.html
+
+
+
+
+        let url = `/quiz/${quizId}/next/${currentQuestionId}`;
+
         if (isLastQuestion) {
-            location.href = `/quiz/${quizId}/result`;
-        } else {
-            location.href = `/quiz/${quizId}/next/${currentQuestionId}`;
+            url = `/quiz/${quizId}/result`;
         }
+
+        fetch(url).then(response => response.text())
+                    .then(fragment => {
+                        const questionContainer = document.getElementById("question-container");
+                        questionContainer.innerHTML = fragment;
+                        initPage();
+                    })
     });
-});
+};
 
