@@ -86,29 +86,23 @@ public class QuizController
         return "quiz/question-fragment";
     }
 
-    // processes user answers and updates their score
-    @PostMapping("/{quizId}/submit")
-    public String submitQuiz(@PathVariable int quizId, @RequestParam Map<String, String> userAnswers, Model model, HttpSession session)
-    {
-        // Retrieve correct answers from database
+    // holds all the correct answers for each quiz
+    @GetMapping("/{quizId}/correct-answers")
+    @ResponseBody
+    public Map<Integer, Integer> getCorrectAnswers(@PathVariable int quizId) {
         List<Question> questions = questionDao.getQuestionsByQuizId(quizId);
-        Map<Integer, Integer> correctAnswers = new HashMap<>();
+        Map<Integer, Integer> correctAnswersMap = new HashMap<>();
 
-        for (Question question : questions)
-        {
-            List<Answer> correctAnswerList = answerDao.getCorrectAnswersByQuestionId(question.getQuestionId());
-            for (Answer answer : correctAnswerList)
-            {
-                correctAnswers.put(question.getQuestionId(), answer.getAnswerId());
+        for (Question question : questions) {
+            List<Answer> correctAnswers = answerDao.getCorrectAnswersByQuestionId(question.getQuestionId());
+            if (!correctAnswers.isEmpty()) {
+                correctAnswersMap.put(question.getQuestionId(), correctAnswers.get(0).getAnswerId());
             }
         }
 
-        int score = calculateScore(userAnswers, correctAnswers);
-
-        session.setAttribute("score", score);
-
-        return "redirect:/quiz/" + quizId + "/result";
+        return correctAnswersMap;
     }
+
 
     // displays the final score
     @GetMapping("/{quizId}/result")
