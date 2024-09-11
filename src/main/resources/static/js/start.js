@@ -48,18 +48,11 @@ function initPage() {
             userAnswers[currentQuestionId] = selectedAnswer.value; // Save answer with question ID as key
         }
 
-//        const score = 0;
-//        if(isCorrect){
-//            score++;
-//        }
-
-
-        //get answer logic, and then plug it into the span in result.html
 
         let url = `/quiz/${quizId}/next/${currentQuestionId}`;
 
         if (isLastQuestion) {
-            displayScore()
+            displayScore(quizId);
             return;
         }
 
@@ -75,8 +68,7 @@ function initPage() {
 
 
 // Function to handle displaying the final score
-function displayScore() {
-    const quizId = document.getElementById('quiz-id').value;
+function displayScore(quizId) {
 
     let url = `/quiz/${quizId}/correct-answers`;
     fetch(url)
@@ -88,10 +80,19 @@ function displayScore() {
             return response.json();
         })
         .then(correctAnswers => {
+            console.log('correctAnswers:', correctAnswers);
+
             let score = 0;
             for (const [questionId, userAnswerId] of Object.entries(userAnswers)) {
-                const correctAnswerIds = correctAnswers[questionId] || [];
-                if (correctAnswerIds.includes(parseInt(userAnswerId, 10))) {
+
+                console.log('questionId:', questionId);
+                console.log('userAnswerId:', userAnswerId);
+
+                const correctAnswerId = correctAnswers[questionId];
+
+                console.log('correctAnswerID:', correctAnswerId);
+
+                if (parseInt(userAnswerId, 10) === correctAnswerId) {
                     score++;
                 }
             }
