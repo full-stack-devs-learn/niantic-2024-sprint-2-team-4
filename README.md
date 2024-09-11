@@ -1,11 +1,12 @@
 # Trivio Quiz App
 
-# Project Overview
+## Project Overview
 The Trivio Quiz App is a web-based application designed to provide users with an interactive quiz-taking experience. Users can select a quiz from the home page, answer questions sequentially, and view their final scores at the conclusion of each quiz. The application is built with Java, Spring Boot, Thymeleaf, JavaScript, and the Fetch API to enable dynamic question loading.
 
 This project was developed using pair programming, where team members alternated between driving and navigating roles. Task management was facilitated using a Trello board, while LucidChart was employed to create design diagrams and plan the application's architecture.
 
-# Key Technologies and Tools
+
+## Key Technologies and Tools
 - **Programming Languages:** Java, JavaScript
 - **Frameworks:** Spring Boot (Backend), Thymeleaf (Frontend Templating)
 - **APIs:** Fetch API (Dynamic Data Loading)
@@ -16,17 +17,20 @@ This project was developed using pair programming, where team members alternated
 - **Development Environment:** IntelliJ IDEA CE
 - **Testing:** Browser DevTools
 
-# Key Features
+
+## Key Features
 - **Quiz Selection:** Users can choose from various quizzes available on the home page.
 - **Dynamic Question Loading:** JavaScript and the Fetch API are utilized to load questions dynamically, enhancing the user experience.
 - **Score Display:** The user's total score is displayed at the end of each quiz, providing immediate feedback.
 
-# Development Process: Planning and Design
+
+## Development Process: Planning and Design
 The development process followed a structured approach, guided by a Kanban board in Trello. The project was divided into manageable tasks to monitor progress and maintain focus throughout the development cycle.
 
 Lucidchart was used to create flowcharts and diagrams, helping visualize the application's architecture, data flow, and the layout of each page to ensure a coherent design strategy.
 
-# Key Development Stages
+
+## Key Development Stages
 The project was executed following a ten-step development plan:
 
 - **1. Setup:** Cloned the repository, ran the provided database script, and ensured a stable connection between the database and the application. 
@@ -40,7 +44,8 @@ The project was executed following a ten-step development plan:
 - **9. Testing:** Conducted user testing internally and with family members to ensure a smooth and enjoyable experience.
 - **10. Code Optimization:** Refactored the codebase to enhance readability, maintainability, and performance.
 
-# Challenges Encountered
+
+## Challenges Encountered
 Several challenges were addressed during development, including:
 
 - **Backend Challenge:** Initially, the "Next" button was visible upon starting the quiz, and it failed to navigate to the next page when clicked.
@@ -67,12 +72,17 @@ Several challenges were addressed during development, including:
   - **Solution:** Refactored the JavaScript code to properly calculate and update the progress bar percentage based on the total number of questions and the current question index.
 
 
-
-# Favorite Block of Code
+## Favorite Block of Code
 ### Tabatha
+![progress bar](tabatha.png)
+
+**Favorite Code Block: Progress Bar**
+
+I chose this block of code because it brings a dynamic and visually appealing "wow factor" to the user experience by displaying an animated progress bar. Implementing this feature involved ensuring the progress bar accurately reflects the user's current progress through a series of questions, which required precise calculations. I learned how to use Thymeleaf expressions to dynamically set styles in a way that updates the progress bar's width in real-time based on the user's progress. This was a challenging yet rewarding experience, as it involved both front-end and back-end integration to achieve a seamless, responsive design element.
+
 
 ### Valerie
-![answer options and next button](img.png)
+![answer options and next button](valerie.png)
 
 **Favorite Code Block: Answer Container and "Next Question" Button**
 
@@ -87,5 +97,5 @@ This code block not only reinforced my understanding of how to integrate various
 This experience significantly deepened my knowledge of dynamic programming and the effective use of Thymeleaf for server-side rendering. It highlighted the importance of ensuring seamless interaction between backend processes and frontend display, and it showcased the power of Thymeleaf in building dynamic, data-driven user interfaces. Working on Trivio makes me excited to learn more about what we're capable of achieving with our new skills, and I look forward to learning even more in sprint 3!
 
 
-# Acknowledgments
+## Acknowledgments
 We extend our gratitude to our instructor, Gregor, for his invaluable guidance and support throughout this project. Additionally, we appreciate the constructive feedback provided by our peers during our project presentation.
