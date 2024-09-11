@@ -81,6 +81,8 @@ function displayScore(quizId) {
             console.log('correctAnswers:', correctAnswers);
 
             let score = 0;
+            const totalQuestions = Object.keys(correctAnswers).length;
+
             for (const [questionId, userAnswerId] of Object.entries(userAnswers)) {
 
                 console.log('questionId:', questionId);
@@ -100,7 +102,7 @@ function displayScore(quizId) {
             resultContainer.innerHTML = `
                 <div class="card mb-2 quiz-card">
                     <h1>Quiz Results</h1>
-                    <h3>Your Score: <span id="score">${score}</span></h3>
+                    <h3>Your Score: <span id="score">${score}</span> out of ${totalQuestions}</h3>
                     <a href="/quiz/${quizId}/start" class="btn btn-dark btn-primary custom-btn custom-hover-btn">Try again?</a>
 
                     <a href="/" class="btn btn-dark btn-primary custom-btn custom-hover-btn">Return to Home</a>
