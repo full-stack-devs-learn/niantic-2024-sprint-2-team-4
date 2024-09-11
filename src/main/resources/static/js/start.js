@@ -41,7 +41,7 @@ function initPage() {
             return;
         }
 
-<<<<<<< Updated upstream
+
         // Store user answers
         const selectedAnswer = document.querySelector('input[name="answer"]:checked');
         if (selectedAnswer) {
@@ -53,9 +53,9 @@ function initPage() {
 //            score++;
 //        }
 
-=======
+
         //get answer logic, and then plug it into the span in result.html
->>>>>>> Stashed changes
+
         let url = `/quiz/${quizId}/next/${currentQuestionId}`;
 
         if (isLastQuestion) {
@@ -69,7 +69,7 @@ function initPage() {
                 initPage();
             });
     });
-<<<<<<< Updated upstream
+
 }
 
 
@@ -110,7 +110,3 @@ function displayScore() {
             console.error('There was a problem with the fetch operation:', error);
         });
 }
-
-=======
-};
->>>>>>> Stashed changes
