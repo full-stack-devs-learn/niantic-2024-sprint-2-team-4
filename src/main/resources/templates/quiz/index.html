@@ -14,7 +14,7 @@
         <p th:text="${quiz.description}">Quiz Description</p>
         <p>When you feel ready, press "Start" to begin taking your quiz!</p>
     </div>
-    <br>
+
     <!-- id uniquely identifies the button, while data-quiz-id enables quiz id retrieval in js-->
     <button id="start-quiz-btn" class="btn btn-dark btn-lg custom-btn custom-hover-btn" th:value="${quiz.quizId}">Start</button>
 </div>

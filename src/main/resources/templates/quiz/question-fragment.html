@@ -10,8 +10,7 @@
             </div>
         </div>
         <p th:text="'Question ' + ${question.questionNumber} + ' of ' + ${totalQuestions}"></p>
-        <br>
-        <br>
+
         <h1 th:text="${question.questionText}">Question</h1>
     </div>
     <div class="answer-container">
@@ -28,7 +27,7 @@
             </ul>
         </form>
     </div>
-    <br>
+
     <button id="next-question-btn" class="btn btn-dark custom-btn custom-hover-btn"
             th:text="${isLastQuestion} ? 'See Results' : 'Next Question'"
             th:data-quiz-id="${quiz.quizId}">Next Question

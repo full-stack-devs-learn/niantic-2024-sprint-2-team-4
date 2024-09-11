@@ -2,8 +2,7 @@ package com.niantic.models;
 
 import java.util.ArrayList;
 
-public class Quiz
-{
+public class Quiz {
     private int quizId;
     private String title;
     private boolean isLive;
@@ -11,59 +10,53 @@ public class Quiz
 
     private ArrayList<Question> questions = new ArrayList<>();
 
-    public Quiz()
-    {
+    public Quiz() {
     }
 
-    public Quiz(int quizId, String title, boolean isLive, String description)
-    {
+    public Quiz(int quizId, String title, boolean isLive, String description) {
         this.quizId = quizId;
         this.title = title;
         this.isLive = isLive;
         this.description = description;
     }
 
-    public int getQuizId()
-    {
+    public int getQuizId() {
         return quizId;
     }
 
-    public void setQuizId(int quizId)
-    {
+    public void setQuizId(int quizId) {
         this.quizId = quizId;
     }
 
-    public String getTitle()
-    {
+    public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title)
-    {
+    public void setTitle(String title) {
         this.title = title;
     }
 
-    public boolean isLive()
-    {
+    public boolean isLive() {
         return isLive;
     }
 
-    public void setLive(boolean live)
-    {
+    public void setLive(boolean live) {
         isLive = live;
     }
 
-    public String description() {return description;}
+    public String description() {
+        return description;
+    }
 
-    public void setDescription(String description) {this.description = description;}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-    public ArrayList<Question> getQuestions()
-    {
+    public ArrayList<Question> getQuestions() {
         return questions;
     }
 
-    public void setQuestions(ArrayList<Question> questions)
-    {
+    public void setQuestions(ArrayList<Question> questions) {
         this.questions = questions;
     }
 

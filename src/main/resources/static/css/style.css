@@ -8,6 +8,7 @@ body {
 /* Navbar Styles */
 .custom-navbar {
     background-color: #56b8c8;
+    font-size: 1.3rem;
 }
 
 .navbar-brand {
@@ -62,13 +63,15 @@ body {
 
 .answer-container span {
     font-family: "Cabin Sketch";
-    font-size: 17px;
+    font-size: 1.3rem;
 }
 
 /* Button and Label Styles */
 .custom-btn {
     font-family: "Cabin Sketch";
-    background-color: #876bd1;
+    background-color: #b19cd9;
+    font-size: 1.3rem;
+    margin: 10px;
 }
 
 .custom-label {
@@ -118,10 +121,6 @@ label {
 }
 
 /* Miscellaneous Styles */
-.quiz-name {
-    font-family: "Cabin Sketch";
-}
-
 .hide {
     display: none;
 }
