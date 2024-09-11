@@ -59,7 +59,8 @@ function initPage() {
         let url = `/quiz/${quizId}/next/${currentQuestionId}`;
 
         if (isLastQuestion) {
-            url = `/quiz/${quizId}/result`;
+            displayScore()
+            return;
         }
 
         fetch(url).then(response => response.text())
