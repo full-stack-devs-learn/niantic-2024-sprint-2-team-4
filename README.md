@@ -85,7 +85,6 @@ I chose this block of code because it brings a dynamic and visually appealing "w
 
 **1. What did I learn?**
 I learned a lot about managing a full-stack project from start to finish. Key learnings include:
-
 * JavaScript and Fetch API: I gained hands-on experience with using JavaScript to dynamically load content on the page using the Fetch API. This allowed us to make the user experience more interactive without reloading the page.
 * Spring Boot and Thymeleaf Integration: I learned how to integrate Spring Boot with Thymeleaf to create dynamic and data-driven web pages. Understanding the flow of data between the backend and the frontend was crucial for implementing our quiz functionality.   
 
@@ -95,12 +94,12 @@ While our Kanban board helped manage tasks, I realize that some tasks could have
 
 
 **3. What would I do the same?**
-The pair programming technique was highly effective for this project, fostering a collaborative environment that encouraged constant feedback and shared learning. I would continue to use this approach, whenever possible, as it helped us stay on track and improve code quality. 
+The pair programming technique was highly effective for this project, fostering a collaborative environment that encouraged constant feedback and shared learning. I would continue to use this approach, whenever possible, as it helped me stay on track and improve code quality. 
 
 
 **4. If I had more time, what would I add to the project?**
 SO MUCH! Some of the things would be:
-* User Authentication and Profile Management: Adding user authentication would allow us to save individual user scores and progress, enabling a more personalized experience where users could track their quiz history.
+* User Authentication and Profile Management: Adding user authentication would allow us to save individual user scores and progress, enabling a more personalized experience where users could track their quiz history, add favorite quizzes, etc.
 * Additional Quiz Features: We would add features like quiz categories, timed quizzes, or randomized question order to increase replayability and challenge levels.
 * Leaderboard: Implementing a leaderboard would add a competitive aspect to the app, allowing users to see how their scores compare to others.
 * Quiz Management: Adding functionality for administrators to manage quizzes directly through the application. This would include the ability to create new quizzes, edit existing ones, and delete quizzes without needing to modify the database manually. Implementing a user-friendly interface for managing quizzes would not only streamline the process but also make the application more versatile and user-centric.   
