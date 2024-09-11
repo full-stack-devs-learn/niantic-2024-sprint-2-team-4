@@ -1,9 +1,38 @@
+/* Global Styles */
 body {
- padding: 3px 1px 10px 3px;
- font-family: "Cabin Sketch";
- background-color: #e283ae;
+    padding: 3px 1px 10px 3px;
+    font-family: "Cabin Sketch";
+    background-color: #e283ae;
 }
 
+/* Navbar Styles */
+.custom-navbar {
+    background-color: #56b8c8;
+}
+
+.navbar-brand {
+    font-size: 1.8rem;
+}
+
+.navbar-brand.quiz-link:hover {
+    background-color: #e89f69;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+/* Quiz Link Styles */
+.quiz-link {
+    font-size: 1.1rem;
+    margin-left: 20px;
+}
+
+.quiz-link img {
+    margin-bottom: 5px;
+    margin-top: 5px;
+    vertical-align: middle;
+}
+
+/* Answer Container Styles */
 .answer-container {
     margin-top: 20px;
 }
@@ -22,7 +51,6 @@ body {
 
 .answer-container input[type="radio"] {
     margin-right: 5px;
-    /*change size of radio button*/
     width: 17px;
     height: 17px;
 }
@@ -32,74 +60,12 @@ body {
     align-items: center;
 }
 
-label {
-    cursor: pointer;
-}
-
 .answer-container span {
     font-family: "Cabin Sketch";
     font-size: 17px;
 }
 
-.hide{
-    display: none;
-}
-
-.navbar-brand {
-    font-size: 1.8rem;
-}
-
-.quiz-link {
-    font-size: 1.1rem;
-    margin-left: 20px;
-}
-
-.quiz-link img {
-    margin-bottom: 5px;
-    margin-top: 5px;
-    vertical-align: middle;
-}
-
-.custom-navbar {
-    background-color: #56b8c8;
-}
-
-.custom-hover-btn:hover {
-    font-family: "Cabin Sketch";
-    background-color: #e89f69;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-}
-
-.quiz-card-1 {
-    font-family: "Cabin Sketch";
-    font-size: 1.3rem;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    cursor: pointer;
-    background-color: #fddf8d;
-    max-width: 500px;
-    height: 3.4rem;
-    margin: 0 auto;
-
-}
-
-.quiz-card-1:hover {
-    background-color: #e89f69;
-    color: #ffffff;
-}
-
-.quiz-card {
-    font-family: "Cabin Sketch";
-    background-color: #fddf8d;
-    padding: 30px;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.quiz-name {
-    font-family: "Cabin Sketch";
-}
-
+/* Button and Label Styles */
 .custom-btn {
     font-family: "Cabin Sketch";
     background-color: #876bd1;
@@ -113,4 +79,49 @@ label {
 
 .custom-label:hover {
     color: #dd5790;
+}
+
+label {
+    cursor: pointer;
+}
+
+.custom-hover-btn:hover {
+    font-family: "Cabin Sketch";
+    background-color: #e89f69;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Quiz Card Styles */
+.quiz-card {
+    font-family: "Cabin Sketch";
+    background-color: #fddf8d;
+    padding: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.quiz-card-1 {
+    font-family: "Cabin Sketch";
+    font-size: 1.3rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+    background-color: #fddf8d;
+    max-width: 500px;
+    height: 3.4rem;
+    margin: 0 auto;
+}
+
+.quiz-card-1:hover {
+    background-color: #e89f69;
+    color: #ffffff;
+}
+
+/* Miscellaneous Styles */
+.quiz-name {
+    font-family: "Cabin Sketch";
+}
+
+.hide {
+    display: none;
 }

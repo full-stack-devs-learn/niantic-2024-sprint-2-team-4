@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,7 +62,6 @@ public class QuizController
 
     //Fetch next question:
     @GetMapping("/{quizId}/next/{questionId}")
-    //@ResponseBody
     public String getNextQuestion(@PathVariable int quizId, @PathVariable int questionId, Model model) {
         Quiz quiz = quizDao.getQuizById(quizId);
         Question nextQuestion = questionDao.getNextQuestion(quizId, questionId);
@@ -114,7 +113,18 @@ public class QuizController
             score = 0;
         }
 
+        // Retrieve correct answers from each question:
+        List<Question> questions = questionDao.getQuestionsByQuizId(quizId);
+        List<Answer> correctAnswers = new ArrayList<>();
+
+        for (Question question : questions)
+        {
+            List<Answer> correctAnswerList = answerDao.getCorrectAnswersByQuestionId(question.getQuestionId());
+            correctAnswers.addAll(correctAnswerList);
+        }
+
         model.addAttribute("score", score);
+        model.addAttribute("correctAnswers", correctAnswers);
 
         // clear from session after displaying score
         session.removeAttribute("score");
@@ -136,5 +146,3 @@ public class QuizController
         return score;
     }
 }
-
-    
