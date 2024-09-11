@@ -43,16 +43,16 @@ The project was executed following a ten-step development plan:
 # Challenges Encountered
 Several challenges were addressed during development, including:
 
-- **Backend Challenge:** Ensuring the "next" button was only displayed after an answer was selected.
-  - **Problem:** 
-  - **Approach:** 
-  - **Solution:** 
+- **Backend Challenge:** Initially, the "Next" button was visible upon starting the quiz, and it failed to navigate to the next page when clicked.
+  - **Problem:** The "next" button was not hidden when the user started their quiz, and the button did not navigate the user to the next page.
+  - **Approach:** We investigated the URL path and observed that the quiz ID was being correctly passed into the URL as a string. Despite this, the button did not perform the expected navigation.
+  - **Solution:** Upon further inspection, we identified that the issue lay within the HTML file. Specifically, the quizId was not being dynamically bound to the "Next" button due to the absence of proper Thymeleaf attribute bindings. By incorporating Thymeleaf syntax (e.g., th:id and th:data-quiz-id) to dynamically inject the quiz ID into the button element, we resolved the path issue. This adjustment ensured that the button correctly redirected to the intended path, enabling the user to proceed to the next question. Additionally, the modification addressed the visibility issue; the "Next" button now remains hidden until the user selects an answer, thus providing a more intuitive and functional user experience.
 
 
 - **Backend Challenge:** Accurately calculating and displaying the final score on the results page.
-  - **Problem:** 
-  - **Approach:** 
-  - **Solution:** 
+  - **Problem:** The final score consistently displayed as zero, despite having implemented logic to compare user answers with correct answers.
+  - **Approach:** We examined the console outputs to diagnose the issue, focusing on the correct answers, user answers, and their respective IDs. It was observed that the array lists for answers were empty, and the correct answer IDs were appearing as "undefined."
+  - **Solution:** The issue stemmed from the fact that while we had correctly retrieved and stored both the correct answers and user answers, the scoring function responsible for performing the calculations had not been invoked. Additionally, when the function was eventually called, the required parameter (the quiz ID) was missing. To resolve this, we ensured that the scoring function was properly invoked with the necessary parameter, enabling accurate calculations. This adjustment corrected the issue, allowing the final score to be computed and displayed as intended.
 
 
 - **Frontend Challenge:** Enabling the radio button to select an answer when the user clicked on the answer's text.
