@@ -96,6 +96,18 @@ This code block not only reinforced my understanding of how to integrate various
 
 This experience significantly deepened my knowledge of dynamic programming and the effective use of Thymeleaf for server-side rendering. It highlighted the importance of ensuring seamless interaction between backend processes and frontend display, and it showcased the power of Thymeleaf in building dynamic, data-driven user interfaces. Working on Trivio makes me excited to learn more about what we're capable of achieving with our new skills, and I look forward to learning even more in sprint 3!
 
+**Retrospective**
+1. What did I learn?
+   I learned how to effectively link JavaScript events with specific HTML views and integrate the MVC model with the frontend to ensure smooth interaction with user inputs. Implementing the Fetch API allowed me to dynamically load questions without requiring a full page refresh, enhancing the user experience.
+
+2. What would I do differently?
+   I would avoid creating unnecessary paths in the controller, as they were redundant for our single-page navigation model. Additionally, I’d simplify the scoring mechanism by directly checking if the user’s answer matches the is_Correct flag in the database, rather than using a more complex comparison method. Although the complex approach is better for future scalability, it would have been more practical to adapt the solution to fit the project's time constraints.
+
+3. What would I do the same?
+   I would maintain the time spent planning with Tabatha. Despite some overcomplications, our planning session was valuable for defining the structure and flow of the application. We leveraged each other’s strengths effectively: Tabatha’s design skills and user experience insights complemented my focus on integration and functionality.
+
+4. If I had more time, what would I add to the project?
+   If you had more time, what would you add to the project? I would enhance user navigation by allowing users to return to previous questions and providing options to skip questions. I’d also add a grid view for quick access to any question and create a more engaging results page, potentially incorporating themed images related to the quiz content (e.g., a Pokéball for a Pokémon quiz). Improving these features would significantly enrich the overall user experience.
 
 ## Acknowledgments
 We extend our gratitude to our instructor, Gregor, for his invaluable guidance and support throughout this project. Additionally, we appreciate the constructive feedback provided by our peers during our project presentation.
