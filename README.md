@@ -69,9 +69,23 @@ Several challenges were addressed during development, including:
 
 
 # Favorite Block of Code
-- **Tabatha’s:** 
+### Tabatha
 
-- **Valerie’s:** 
+### Valerie
+![answer options and next button](img.png)
+
+**Favorite Code Block: Answer Container and "Next Question" Button**
+
+My favorite code block in the project is the implementation of the answer container and the "Next Question" button. This section presented our primary challenge, but overcoming it was incredibly satisfying and integral to the core functionality of the application.
+
+This code block not only reinforced my understanding of how to integrate various components but also provided a comprehensive learning experience. It involved:
+1. **Defining Data Structures**: Crafting the appropriate data transfer objects (DTOs) to ensure that data could be effectively communicated between different parts of the application.
+2. **Data Retrieval**: Employing Data Access Objects (DAOs) to query specific data from the SQL database, ensuring accurate and efficient data handling.
+3. **Backend to Client Integration**: Using controllers to bridge the backend logic with the client-side view, ensuring that dynamic data was correctly served to the front end.
+4. **View and Event Handling**: Connecting the HTML views with JavaScript events, which required careful management of Thymeleaf templating to dynamically render content and interact with user actions.
+
+This experience significantly deepened my knowledge of dynamic programming and the effective use of Thymeleaf for server-side rendering. It highlighted the importance of ensuring seamless interaction between backend processes and frontend display, and it showcased the power of Thymeleaf in building dynamic, data-driven user interfaces. Working on Trivio makes me excited to learn more about what we're capable of achieving with our new skills, and I look forward to learning even more in sprint 3!
+
 
 # Acknowledgments
 We extend our gratitude to our instructor, Gregor, for his invaluable guidance and support throughout this project. Additionally, we appreciate the constructive feedback provided by our peers during our project presentation.
